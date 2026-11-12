@@ -15,7 +15,7 @@ Method (deterministic, stdlib only, no network):
     (in SOL), its trend (least-squares slope of log cap over time plus the
     recent change), and its volatility (spread of per-mark log changes).
   * Project each coin to the middle of the answer window with a damped
-    drift (mean reversion: only 35% of the extrapolated trend is kept,
+    drift (mean reversion: only 38% of the extrapolated trend is kept,
     capped), so fast risers gain mass over the naive "last order holds"
     baseline without extrapolating a 10-minute pump over 24 hours.
   * Simulate the answer reads with a fixed-seed RNG: each candidate's
@@ -40,9 +40,9 @@ INPUT_DIR = os.environ.get("MAKEFUN_INPUT_DIR", "/input")
 OUTPUT_DIR = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
 
 SEED = 20261112
-DRAWS = 12000
+DRAWS = 20000
 MAX_CANDIDATES = 60
-DRIFT_KEEP = 0.35          # fraction of extrapolated trend kept
+DRIFT_KEEP = 0.38          # fraction of extrapolated trend kept
 DRIFT_MIN, DRIFT_MAX = -0.90, 0.65   # log10 caps on the projected drift
 MIN_NAMED_P = 0.002        # drop named place rows below this (after scaling)
 MICRO = 1_000_000
